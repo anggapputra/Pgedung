@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.3
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 17, 2015 at 06:47 
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Host: 127.0.0.1
+-- Generation Time: Sep 17, 2020 at 07:11 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `reservasi`
@@ -26,12 +28,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `rb_admin`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_admin` (
+CREATE TABLE `rb_admin` (
   `id_admin` int(5) NOT NULL,
   `nama_lengkap` varchar(50) NOT NULL,
   `username` varchar(150) NOT NULL,
   `password` varchar(150) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_admin`
@@ -46,7 +48,7 @@ INSERT INTO `rb_admin` (`id_admin`, `nama_lengkap`, `username`, `password`) VALU
 -- Table structure for table `rb_fasilitas`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_fasilitas` (
+CREATE TABLE `rb_fasilitas` (
   `kode_fasilitas` int(3) NOT NULL,
   `kode_kategori` int(5) NOT NULL,
   `nama_fasilitas` varchar(15) NOT NULL,
@@ -56,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `rb_fasilitas` (
   `jml_kmr` int(3) NOT NULL,
   `kapasitas` int(3) NOT NULL,
   `namafoto` varchar(50) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_fasilitas`
@@ -85,12 +87,12 @@ INSERT INTO `rb_fasilitas` (`kode_fasilitas`, `kode_kategori`, `nama_fasilitas`,
 -- Table structure for table `rb_halaman`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_halaman` (
+CREATE TABLE `rb_halaman` (
   `kd_halaman` int(5) NOT NULL,
   `judul_halaman` varchar(255) NOT NULL,
   `isi_halaman` text NOT NULL,
   `tanggal` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_halaman`
@@ -106,10 +108,10 @@ INSERT INTO `rb_halaman` (`kd_halaman`, `judul_halaman`, `isi_halaman`, `tanggal
 -- Table structure for table `rb_jenis_penerimaan`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_jenis_penerimaan` (
+CREATE TABLE `rb_jenis_penerimaan` (
   `kd_jenis_penerimaan` int(5) NOT NULL,
   `jenis_penerimaan` varchar(150) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_jenis_penerimaan`
@@ -126,10 +128,10 @@ INSERT INTO `rb_jenis_penerimaan` (`kd_jenis_penerimaan`, `jenis_penerimaan`) VA
 -- Table structure for table `rb_kategori`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_kategori` (
+CREATE TABLE `rb_kategori` (
   `kode_kategori` int(5) NOT NULL,
   `nama_kategori` varchar(150) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_kategori`
@@ -146,13 +148,13 @@ INSERT INTO `rb_kategori` (`kode_kategori`, `nama_kategori`) VALUES
 -- Table structure for table `rb_kontak`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_kontak` (
+CREATE TABLE `rb_kontak` (
   `kd_kontak` int(5) NOT NULL,
   `nama_lengkap` varchar(150) NOT NULL,
   `alamat_email` varchar(150) NOT NULL,
   `isi_pesan` text NOT NULL,
   `waktu` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_kontak`
@@ -167,12 +169,12 @@ INSERT INTO `rb_kontak` (`kd_kontak`, `nama_lengkap`, `alamat_email`, `isi_pesan
 -- Table structure for table `rb_makanan`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_makanan` (
+CREATE TABLE `rb_makanan` (
   `kode_makanan` int(3) NOT NULL,
   `kode_jenis_makanan` int(5) NOT NULL,
   `harga_makanan` int(11) NOT NULL,
   `menu_makanan` text NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_makanan`
@@ -216,7 +218,7 @@ INSERT INTO `rb_makanan` (`kode_makanan`, `kode_jenis_makanan`, `harga_makanan`,
 -- Table structure for table `rb_members`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_members` (
+CREATE TABLE `rb_members` (
   `id_members` int(5) NOT NULL,
   `kd_jenis_penerimaan` int(5) NOT NULL,
   `username` varchar(150) NOT NULL,
@@ -227,14 +229,15 @@ CREATE TABLE IF NOT EXISTS `rb_members` (
   `alamat_email` varchar(150) NOT NULL,
   `alamat_lengkap` text NOT NULL,
   `tanggal_daftar` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_members`
 --
 
 INSERT INTO `rb_members` (`id_members`, `kd_jenis_penerimaan`, `username`, `password`, `nama_lengkap`, `nama_instansi`, `no_telpon`, `alamat_email`, `alamat_lengkap`, `tanggal_daftar`) VALUES
-(1, 2, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 'Robby Prihandaya', 'Dinas Pendidikan Muaro Bungo', '081267771344', 'robby.prihandaya@gmail.com', 'Jln. Angkasa Puri, Perundam 4, Blok C No 2, Padang, Sumatra Barat', '2015-05-28 07:57:24');
+(1, 2, 'user1', '24c9e15e52afc47c225b757e7bee1f9d', 'Robby Prihandaya', 'Dinas Pendidikan Muaro Bungo', '081267771344', 'robby.prihandaya@gmail.com', 'Jln. Angkasa Puri, Perundam 4, Blok C No 2, Padang, Sumatra Barat', '2015-05-28 07:57:24'),
+(3, 1, 'cek', '202cb962ac59075b964b07152d234b70', 'cekcek', 'cekcek', '12345678909', 'topankamil82@gmail.com', 'bekasi', '2020-09-17 03:25:11');
 
 -- --------------------------------------------------------
 
@@ -242,12 +245,12 @@ INSERT INTO `rb_members` (`id_members`, `kd_jenis_penerimaan`, `username`, `pass
 -- Table structure for table `rb_slide`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_slide` (
+CREATE TABLE `rb_slide` (
   `id_slide` int(5) NOT NULL,
   `keterangan` text NOT NULL,
   `foto` varchar(150) NOT NULL,
   `waktu` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_slide`
@@ -265,11 +268,11 @@ INSERT INTO `rb_slide` (`id_slide`, `keterangan`, `foto`, `waktu`) VALUES
 -- Table structure for table `rb_tambahan`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_tambahan` (
+CREATE TABLE `rb_tambahan` (
   `kode_tambahan` int(3) NOT NULL,
   `nama_tambahan` varchar(15) NOT NULL,
   `jml_tambahan` int(3) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_tambahan`
@@ -285,14 +288,14 @@ INSERT INTO `rb_tambahan` (`kode_tambahan`, `nama_tambahan`, `jml_tambahan`) VAL
 -- Table structure for table `rb_trx_makanan`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_trx_makanan` (
+CREATE TABLE `rb_trx_makanan` (
   `kd_trx_makanan` int(5) NOT NULL,
   `kd_trx_reservasi` int(5) NOT NULL,
   `kode_makanan` int(5) NOT NULL,
   `jumlah` int(5) NOT NULL,
   `ket` enum('Pagi','Siang','Malam') NOT NULL,
   `waktu_pesan` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_trx_makanan`
@@ -310,14 +313,14 @@ INSERT INTO `rb_trx_makanan` (`kd_trx_makanan`, `kd_trx_reservasi`, `kode_makana
 -- Table structure for table `rb_trx_reservasi`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_trx_reservasi` (
+CREATE TABLE `rb_trx_reservasi` (
   `kd_trx_reservasi` int(5) NOT NULL,
   `id_members` int(5) NOT NULL,
   `tanggal_pesan` datetime NOT NULL,
   `sampai_tanggal` datetime NOT NULL,
   `keterangan` text NOT NULL,
   `waktu_pesan` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_trx_reservasi`
@@ -333,12 +336,12 @@ INSERT INTO `rb_trx_reservasi` (`kd_trx_reservasi`, `id_members`, `tanggal_pesan
 -- Table structure for table `rb_trx_reservasi_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_trx_reservasi_detail` (
+CREATE TABLE `rb_trx_reservasi_detail` (
   `id` int(5) NOT NULL,
   `kd_trx_reservasi` int(5) NOT NULL,
   `kode_fasilitas` int(5) NOT NULL,
   `jml_orang` int(5) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_trx_reservasi_detail`
@@ -357,13 +360,13 @@ INSERT INTO `rb_trx_reservasi_detail` (`id`, `kd_trx_reservasi`, `kode_fasilitas
 -- Table structure for table `rb_trx_tambahan`
 --
 
-CREATE TABLE IF NOT EXISTS `rb_trx_tambahan` (
+CREATE TABLE `rb_trx_tambahan` (
   `kd_trx_tambahan` int(5) NOT NULL,
   `kd_trx_reservasi` int(5) NOT NULL,
   `kode_tambahan` int(5) NOT NULL,
   `jumlah` int(5) NOT NULL,
   `waktu` datetime NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `rb_trx_tambahan`
@@ -470,72 +473,87 @@ ALTER TABLE `rb_trx_tambahan`
 -- AUTO_INCREMENT for table `rb_admin`
 --
 ALTER TABLE `rb_admin`
-  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `rb_fasilitas`
 --
 ALTER TABLE `rb_fasilitas`
-  MODIFY `kode_fasilitas` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `kode_fasilitas` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `rb_halaman`
 --
 ALTER TABLE `rb_halaman`
-  MODIFY `kd_halaman` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `kd_halaman` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `rb_jenis_penerimaan`
 --
 ALTER TABLE `rb_jenis_penerimaan`
-  MODIFY `kd_jenis_penerimaan` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `kd_jenis_penerimaan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `rb_kategori`
 --
 ALTER TABLE `rb_kategori`
-  MODIFY `kode_kategori` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `kode_kategori` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `rb_kontak`
 --
 ALTER TABLE `rb_kontak`
-  MODIFY `kd_kontak` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `kd_kontak` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `rb_makanan`
 --
 ALTER TABLE `rb_makanan`
-  MODIFY `kode_makanan` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `kode_makanan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `rb_members`
 --
 ALTER TABLE `rb_members`
-  MODIFY `id_members` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_members` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `rb_slide`
 --
 ALTER TABLE `rb_slide`
-  MODIFY `id_slide` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_slide` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `rb_tambahan`
 --
 ALTER TABLE `rb_tambahan`
-  MODIFY `kode_tambahan` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `kode_tambahan` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `rb_trx_makanan`
 --
 ALTER TABLE `rb_trx_makanan`
-  MODIFY `kd_trx_makanan` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `kd_trx_makanan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `rb_trx_reservasi`
 --
 ALTER TABLE `rb_trx_reservasi`
-  MODIFY `kd_trx_reservasi` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `kd_trx_reservasi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `rb_trx_reservasi_detail`
 --
 ALTER TABLE `rb_trx_reservasi_detail`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `rb_trx_tambahan`
 --
 ALTER TABLE `rb_trx_tambahan`
-  MODIFY `kd_trx_tambahan` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `kd_trx_tambahan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
